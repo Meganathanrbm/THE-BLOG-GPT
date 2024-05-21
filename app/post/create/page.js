@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
   const generatePost = useSelector((state) => state.generatePost.post);
@@ -30,7 +30,7 @@ const page = () => {
           content: generatePost.content,
         });
     }
-  }, [generatePost]);
+  }, [generatePost && generatePost]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -67,4 +67,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
