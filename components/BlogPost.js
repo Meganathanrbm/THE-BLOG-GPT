@@ -7,20 +7,22 @@ import Date from "./Date";
 const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
   return (
     <section
-      className={`flex sm:gap-12 gap-8 my-4 lg:flex-row flex-col ${
+      className={`flex w-[390px] rounded-md max-h-max gap-2 mb-6  flex-col ${
         !title && "animate-pulse"
       }`}
     >
-      <div className="image center  h-[250px]  md:h-[320px]  shrink-0 lg:max-w-[480px] w-auto">
-        <Image
-          src={image ? image : ""}
-          width={1080}
-          height={520}
-          alt="post-image"
-          className={`${
-            image ? "" : "bg-gray-200 dark:bg-gray-700 "
-          } h-auto w-auto`}
-        />
+      <div className="image center  h-[250px] overflow-hidden    shrink-0 lg:w-[390px] w-auto">
+        <Link href={`/post?postId=${_id}`}>
+          <Image
+            src={image ? image : ""}
+            width={1080}
+            height={520}
+            alt="post-image"
+            className={`${
+              image ? "" : "bg-gray-200 dark:bg-gray-700 "
+            } h-[220px] rounded-md object-cover hover:scale-110 transition ease-linear    shrink-0 lg:w-[390px] w-auto`}
+          />
+        </Link>
       </div>
       <div className="content w-full">
         {/* Date */}
@@ -34,7 +36,9 @@ const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
           {title}
         </Link>
         {content ? (
-          <p className="para line-clamp-5"> {content} </p>
+          <p style={{ fontSize: "19px" }} className="para line-clamp-3">
+            {content}
+          </p>
         ) : (
           <div className="my-5">
             <p className="skeloten_loading w-5/6 my-4 h-4"></p>
@@ -44,7 +48,7 @@ const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
             <p className="skeloten_loading w-3/6 my-4 h-4"></p>
           </div>
         )}
-        <Tags tag={tag} />
+        <Tags limit={4} tag={tag} />
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 
 export const metadata = {
-  title: "Blog Website",
+  title: "The Blog GPT",
   description: "Blog website with CRUD operations",
   icons: { icon: "./assets/images/favicon.png" },
 };
@@ -20,7 +20,9 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <Provider>
             <Nav />
-            <Suspense fallback={<Loading />}>{children}</Suspense>
+            <Suspense  fallback={<Loading />}>
+              {children}
+            </Suspense>
             <Footer />
           </Provider>
         </ReduxProvider>

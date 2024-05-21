@@ -69,6 +69,7 @@ const Form = ({ name, submitting, post, setPost, handleSubmit }) => {
           cols="30"
           rows="10"
           required
+          style={{ whiteSpace: "pre-wrap" }}
         ></textarea>
         <label className="form_label" htmlFor="slug">
           Slug

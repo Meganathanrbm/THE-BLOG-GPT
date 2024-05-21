@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tags = ({ tag }) => {
+const Tags = ({ tag, limit = 5 }) => {
   const colors = [
     "paleBlue_tag",
     "darkBlue_tag",
@@ -12,21 +12,23 @@ const Tags = ({ tag }) => {
   ];
   const shuffledColors = colors.sort(() => Math.random() - 0.5);
   return (
-    <div className="flex gap-6 flex-wrap">
-      {(tag ? tag?.split(",") : [null, null, null, null]).map((tagit, i) =>
-        tagit?.length < 2 ? (
-          ""
-        ) : (
-          <span
-            key={i}
-            className={`${tag ? "" : "skeloten_loading w-14 h-6"} tag ${
-              shuffledColors[i]
-            }`}
-          >
-            {tagit}
-          </span>
-        )
-      )}
+    <div className="flex gap-4 flex-wrap">
+      {(tag ? tag?.split(",") : [null, null, null, null, null])
+        .slice(0, limit)
+        .map((tagit, i) =>
+          tagit?.length < 2 ? (
+            ""
+          ) : (
+            <span
+              key={i}
+              className={`${tag ? "" : "skeloten_loading w-14 h-6"} tag ${
+                shuffledColors[i]
+              }`}
+            >
+              {tagit}
+            </span>
+          )
+        )}
     </div>
   );
 };

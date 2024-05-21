@@ -116,7 +116,7 @@ const ViewPost = ({ post }) => {
 
         {/* title */}
 
-        <h2 className="font-bold text-[#181A2A] dark:text-white text-3xl sm:text-4xl mb-4 w-full text-left">
+        <h2 className="font-bold capitalize text-[#181A2A] dark:text-white text-3xl sm:text-4xl mb-4 w-full text-left">
           {post?.title}
         </h2>
 
@@ -125,7 +125,7 @@ const ViewPost = ({ post }) => {
           <Date date={post?.date} creator={post?.creator} />
         </div>
         {/* image */}
-        <div className="w-full center  m-auto   lg:h-[400px]  lg:max-w-[80%] h-auto">
+        <div className="w-full center  m-auto rounded-md overflow-hidden   lg:h-[400px]  lg:max-w-[80%] h-auto">
           <Image
             alt="post image"
             width={100}
@@ -135,7 +135,7 @@ const ViewPost = ({ post }) => {
           />
         </div>
         {/* paragraph */}
-        <p className="para  mt-6 sm:mt-10"> {post?.content} </p>
+        <p style={{ whiteSpace: 'pre-wrap' }} className="para  mt-6 sm:mt-10"> {post?.content} </p>
         {/* slogan */}
         {post?.slug && (
           <div className="bg-[#F6F6F7] dark:bg-[#242535] mt-8 dark:text-white border-l-4 text-black p-4 rounded-lg text-center capitalize text-lg font-semibold">

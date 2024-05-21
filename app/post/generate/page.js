@@ -20,7 +20,7 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const promptString = `write blog post about  ${userInput.prompt}.Please provided paragraph into a plain text format containing only numbers and alphabets with minimum of 500 charectors. `;
+      const promptString = `write blog post about  ${userInput.prompt}.Please provided paragraph into a plain text format containing only numbers and alphabets with minimum of 750 charectors. `;
       // const promptString = `write blog post about  dog with minimum of 500 charectors content, return a jsx div with tailwind csss styled format with content formatting `;
       const response = await fetch("/api/post/generate", {
         method: "POST",
@@ -51,9 +51,10 @@ const page = () => {
       )}
       <h2 className="title_heading">Generate Blog Post</h2>
       <p className="para">
-        Craft and share captivating blog posts to unleash your creativity and
-        connect with the world. Let your imagination soar as you inspire and
-        engage your audience with your unique voice and perspective.
+        Discover personalized content tailored to your interests with our
+        AI-driven blog. Input your preferences below and explore articles
+        on the latest AI trends, insights, and innovations. Stay informed, stay
+        engaged, and dive into the world of artificial intelligence with us!
       </p>
 
       <form className="flex flex-col" onSubmit={handleSubmit}>
