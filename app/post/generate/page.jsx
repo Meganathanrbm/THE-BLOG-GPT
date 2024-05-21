@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 
-const page = () => {
+const Page = () => {
   const [userInput, setUserInput] = useState({
     title: "",
     prompt: "",
@@ -52,8 +52,8 @@ const page = () => {
       <h2 className="title_heading">Generate Blog Post</h2>
       <p className="para">
         Discover personalized content tailored to your interests with our
-        AI-driven blog. Input your preferences below and explore articles
-        on the latest AI trends, insights, and innovations. Stay informed, stay
+        AI-driven blog. Input your preferences below and explore articles on the
+        latest AI trends, insights, and innovations. Stay informed, stay
         engaged, and dive into the world of artificial intelligence with us!
       </p>
 
@@ -104,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

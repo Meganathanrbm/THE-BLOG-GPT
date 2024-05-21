@@ -5,7 +5,7 @@ import ViewPost from "@/components/ViewPost";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+export default function Page() {
   const searchParams = useSearchParams();
   const [post, setPost] = useState(null);
   const postId = searchParams.get("postId");
@@ -24,6 +24,4 @@ const page = () => {
   }, [searchParams]);
 
   return <ViewPost post={post} />;
-};
-
-export default page;
+}

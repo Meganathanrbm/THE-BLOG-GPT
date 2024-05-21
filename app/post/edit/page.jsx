@@ -3,7 +3,7 @@ import Form from "@/components/Form";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [post, setPost] = useState(null);
   const searchParams = useSearchParams();
   const postId = searchParams.get("postId");
@@ -59,4 +59,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
