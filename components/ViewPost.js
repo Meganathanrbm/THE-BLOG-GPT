@@ -20,6 +20,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
+import Loading from "@/app/loading";
 
 const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
@@ -46,6 +47,7 @@ const ViewPost = ({ post }) => {
 
   return (
     <section className="app center pb-4 sm:pb-8  bg-white dark:bg-dark-100">
+      {!post && <Loading />}
       <div className="w-full xl:max-w-[1025px]">
         {/* tags */}
         <div className="flex justify-between  items-center">
@@ -130,12 +132,17 @@ const ViewPost = ({ post }) => {
             alt="post image"
             width={100}
             height={100}
-            className="w-full h-full object-contain rounded-md object-center"
+            className={`${
+              !post?.image && "skeloten_loading"
+            }  w-full h-full object-contain rounded-md object-center`}
             src={post?.image}
           />
         </div>
         {/* paragraph */}
-        <p style={{ whiteSpace: 'pre-wrap' }} className="para  mt-6 sm:mt-10"> {post?.content} </p>
+        <p style={{ whiteSpace: "pre-wrap" }} className="para  mt-6 sm:mt-10">
+          {" "}
+          {post?.content}{" "}
+        </p>
         {/* slogan */}
         {post?.slug && (
           <div className="bg-[#F6F6F7] dark:bg-[#242535] mt-8 dark:text-white border-l-4 text-black p-4 rounded-lg text-center capitalize text-lg font-semibold">

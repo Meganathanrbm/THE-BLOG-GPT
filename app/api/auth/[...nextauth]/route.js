@@ -4,7 +4,6 @@ import User from "@/db/models/user";
 import { connectToDB } from "@/db/database";
 
 const handler = NextAuth({
-
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -19,13 +18,15 @@ const handler = NextAuth({
         //check for existing user
         const existUser = await User.findOne({ email: profile.email });
         //if there is no existing user create new user in db
+
         if (!existUser) {
           await User.create({
             email: profile.email,
-            username: profile.name.toLowerCase(),
+            username:
+              profile.name.toLowerCase() +
+              Math.random().toString(36).substring(2),
             image: profile.picture,
           });
-         
         }
         return true;
       } catch (error) {

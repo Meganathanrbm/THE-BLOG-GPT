@@ -93,14 +93,22 @@ const Nav = () => {
             <>
               {providers &&
                 Object.values(providers).map((provider) => (
-                  <button
-                    type="button"
-                    key={provider.name}
-                    onClick={() => signIn(provider.id)}
-                    className="black_btn"
-                  >
-                    Sign in
-                  </button>
+                  <div className="center gap-x-6">
+                    <button
+                      onClick={() => signIn(provider.id)}
+                      className="outline_btn"
+                    >
+                      Generate
+                    </button>
+                    <button
+                      type="button"
+                      key={provider.name}
+                      onClick={() => signIn(provider.id)}
+                      className="black_btn"
+                    >
+                      Sign in
+                    </button>
+                  </div>
                 ))}
             </>
           )}
@@ -123,7 +131,7 @@ const Nav = () => {
                   <Link
                     onClick={() => setToggleDropdown((prev) => !prev)}
                     className="dropdown_link"
-                    href="#"
+                    href={`/profile/${session.user.id}`}
                   >
                     My Profile
                   </Link>
@@ -148,7 +156,7 @@ const Nav = () => {
               )}
             </>
           ) : (
-            <>
+            <div className="center gap-x-6">
               {providers &&
                 Object.values(providers).map((provider) => (
                   <button
@@ -159,7 +167,7 @@ const Nav = () => {
                     Sign In
                   </button>
                 ))}
-            </>
+            </div>
           )}
         </div>
         <DarkModeToggle />

@@ -3,7 +3,7 @@ import React from "react";
 import BlogPost from "./BlogPost";
 
 const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
-  console.log(userPosts);
+
   return (
     <section className="padding min-h-screen px-6 sm:px-16 md:px-20 lg:px-28 py-3 sm:py-4 bg-white dark:bg-dark-100">
       {/* Title */}
@@ -26,7 +26,12 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
             {userData?.username}
           </h2>
           <p className="font-semibold text-gray-500">
-            {isMyProfile && userData?.email}
+            {userData &&
+              (isMyProfile
+                ? userData?.email
+                : userData?.email.slice(0, 3) +
+                  "*".repeat(10) +
+                  userData?.email.slice(userData?.email.length - 4))}
           </p>
           <p className="capitalize dark:text-white font-semibold my-2 text-2xl">
             {userPosts?.length} <span>Posts</span>
@@ -37,7 +42,12 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
       {/* Users Posts */}
       <div className="">
         <h2 className="sub_heading my-4 text-left">All blog posts</h2>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between flex-wrap gap-6 ">
+          {userPosts && userPosts.length < 1 && (
+            <div className="center h-full w-full">
+              <h2 className="text-xl text-slate-500">No Posts</h2>
+            </div>
+          )}
           {userPosts?.map((post, i) => (
             <BlogPost key={i} {...post} />
           ))}
