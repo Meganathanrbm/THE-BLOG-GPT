@@ -3,7 +3,6 @@ import React from "react";
 import BlogPost from "./BlogPost";
 
 const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
-
   return (
     <section className="padding min-h-screen px-6 sm:px-16 md:px-20 lg:px-28 py-3 sm:py-4 bg-white dark:bg-dark-100">
       {/* Title */}
@@ -22,7 +21,7 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
           className=" md:h-[150px] sm:h-[75px]  md:w-[150px] p-1  sm:w-[75px] h-[50px] w-[50px] mt-4 sm:mt-0 rounded-full"
         />
         <div className="">
-          <h2 className="capitalize dark:text-white font-semibold mb-2 text-3xl">
+          <h2 className="capitalize dark:text-white w-full sm:whitespace-nowrap font-semibold mb-2 text-3xl">
             {userData?.username}
           </h2>
           <p className="font-semibold text-gray-500">
