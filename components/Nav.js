@@ -92,8 +92,8 @@ const Nav = () => {
           ) : (
             <>
               {providers &&
-                Object.values(providers).map((provider) => (
-                  <div className="center gap-x-6">
+                Object.values(providers).map((provider, i) => (
+                  <div key={i} className="center gap-x-6">
                     <button
                       onClick={() => signIn(provider.id)}
                       className="outline_btn"
