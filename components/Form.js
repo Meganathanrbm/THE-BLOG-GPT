@@ -43,7 +43,8 @@ const Form = ({ name, submitting, post, setPost, handleSubmit }) => {
       <p className="para">
         Craft and share captivating blog posts to unleash your creativity and
         connect with the world. Let your imagination soar as you inspire and
-        engage your audience with your unique voice and perspective.
+        engage your audience with your unique voice and perspective. Feel free
+        to Customize it!.
       </p>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <label className="form_label" htmlFor="titile">

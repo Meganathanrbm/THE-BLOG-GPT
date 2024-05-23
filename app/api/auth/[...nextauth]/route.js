@@ -24,7 +24,7 @@ const handler = NextAuth({
             email: profile.email,
             username:
               profile.name.toLowerCase() +
-              Math.random().toString(36).substring(2),
+              Math.random().toString(36).substring(2).slice(0, 4),
             image: profile.picture,
           });
         }

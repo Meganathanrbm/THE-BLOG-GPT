@@ -11,7 +11,7 @@ const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
         !title && "animate-pulse"
       }`}
     >
-      <div className="image center  overflow-hidden    shrink-0  h-[250px] lg:w-[390px] w-full sm:w-auto">
+      <div className="image center  overflow-hidden rounded-md   shrink-0  h-[250px] lg:w-[390px] w-full sm:w-auto">
         <Link href={`/post?postId=${_id}`}>
           <Image
             src={image ? image : ""}

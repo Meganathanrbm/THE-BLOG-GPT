@@ -1,10 +1,14 @@
-Dummy posts
 search post 
 deboundcing for optimization
 infinite scrolling feature
 
 
 
+
+
+<!-- change user name -->
+<!-- Dummy posts -->
+<!-- deploy -->
 <!-- generate blog using prompt  -->
 <!-- gemini ai api integration -->
 <!-- profile session  -->

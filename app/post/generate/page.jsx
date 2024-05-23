@@ -20,7 +20,7 @@ const Page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const promptString = `write blog post about  ${userInput.prompt}.Please provided paragraph into a plain text format containing only numbers and alphabets with minimum of 750 charectors. `;
+      const promptString = `write blog post about  ${userInput.prompt}.Craft a   Hook readers with a short intro (3-4 sentences) mentioning the topic's importance and what you'll cover (story, fact, question?). Divide your post into clear sections with subheadings, using 3-5 evidence-backed points (stats, quotes) and visuals to engage readers. Wrap it up (2-3 sentences) by summarizing key takeaways and leaving a lasting impression with a call to action or a thought-provoking question. Bonus: sprinkle in relevant keywords naturally, link to related content, and write a compelling meta description (around 160 characters). Now write - keep it clear, informative, and in your own voice!`;
       // const promptString = `write blog post about  dog with minimum of 500 charectors content, return a jsx div with tailwind csss styled format with content formatting `;
       const response = await fetch("/api/post/generate", {
         method: "POST",

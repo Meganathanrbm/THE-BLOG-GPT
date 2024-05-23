@@ -16,7 +16,7 @@ const Feed = () => {
     getPosts();
   }, []);
   return (
-    <section className="w-full mt-4 min-h-svh md:my-10 sm:my-8 bg-white dark:bg-dark-100">
+    <section className="w-full mt-4 min-h-screen md:my-10 sm:my-8 bg-white dark:bg-dark-100">
       <h2 className="sub_heading my-4 text-left">All blog posts</h2>
       <div className="flex flex-col lg:flex-row items-center justify-between flex-wrap gap-6 ">
         {posts?.map((post, i) => (
