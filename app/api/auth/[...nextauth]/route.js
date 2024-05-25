@@ -23,8 +23,18 @@ const handler = NextAuth({
           await User.create({
             email: profile.email,
             username:
-              profile.name.toLowerCase() +
-              Math.random().toString(36).substring(2).slice(0, 4),
+              profile.name.toLowerCase().trim() +
+              Math.random()
+                .toString(36)
+                .substring(2)
+                .slice(
+                  0,
+                  profile.name.trim().length >= 20
+                    ? 0
+                    : profile.name.trim().length > 16
+                    ? 20 - profile.name.trim().length
+                    : 4
+                ),
             image: profile.picture,
           });
         }
