@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Date from "@/components/Date";
 import Tags from "@/components/Tags";
@@ -26,11 +26,18 @@ const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
   const [shareUrl, setShareUrl] = useState({
     title: "Check out this interesting post! ",
-    url: document.location.href,
+    url: null,
   });
   //get the login user data
   const { data: session } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    setShareUrl({
+      ...shareUrl,
+      url: document.location.href,
+    });
+  }, []);
 
   const deletePost = async () => {
     try {

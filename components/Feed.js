@@ -1,6 +1,5 @@
 "use clinet";
 
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import BlogPost from "./BlogPost";
 
@@ -15,7 +14,7 @@ const Feed = () => {
     };
     getPosts();
   }, []);
-  return (
+    return (
     <section className="w-full mt-4 min-h-screen md:my-10 sm:my-8 bg-white dark:bg-dark-100">
       <h2 className="sub_heading my-4 text-left">All blog posts</h2>
       <div className="flex flex-col lg:flex-row items-center justify-between flex-wrap gap-6 ">

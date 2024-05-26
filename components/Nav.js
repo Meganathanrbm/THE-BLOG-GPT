@@ -6,12 +6,13 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Nav = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [providers, setProviders] = useState(null);
   const { data: session } = useSession();
-
+  const router = useRouter();
   // from the redux store
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
 
@@ -22,6 +23,11 @@ const Nav = () => {
       setProviders(res);
     })();
   }, []);
+
+  const handleSignIn = async (id) => {
+    await signIn(id)
+     
+  };
 
   return (
     <nav className="px-6 sm:px-16 md:px-20 lg:px-28 padding z-10 border-b-2 bg-white dark:bg-dark-100 border-black dark:border-white w-full  top-0  flex-between py-3 bg-transparent">
@@ -103,7 +109,7 @@ const Nav = () => {
                     <button
                       type="button"
                       key={provider.name}
-                      onClick={() => signIn(provider.id)}
+                      onClick={() => handleSignIn(provider.id)}
                       className="black_btn"
                     >
                       Sign in
@@ -161,7 +167,7 @@ const Nav = () => {
                 Object.values(providers).map((provider) => (
                   <button
                     key={provider.name}
-                    onClick={() => signIn(provider.id)}
+                    onClick={() => handleSignIn(provider.id)}
                     className="black_btn"
                   >
                     Sign In

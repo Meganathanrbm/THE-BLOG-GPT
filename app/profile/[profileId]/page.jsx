@@ -39,6 +39,7 @@ const Page = () => {
           (post) => post.creator._id === params.profileId
         );
         setUserPosts(filteredPost);
+       
       } catch (error) {
         console.log(error);
       }

@@ -22,7 +22,7 @@ const handler = NextAuth({
         if (!existUser) {
           const username = profile.name.toLowerCase().replace(/\s/g, "");
 
-          //check the username is already used or not 
+          //check the username is already used or not
           const isValidUsername = await User.findOne({ username: username });
           //create a unique username
           const uniqueUsername =
@@ -53,6 +53,7 @@ const handler = NextAuth({
     async session({ session }) {
       const sesstionUser = await User.findOne({ email: session.user.email });
       session.user.id = sesstionUser._id.toString();
+      session.callbackUrl = "/";
       return session;
     },
   },

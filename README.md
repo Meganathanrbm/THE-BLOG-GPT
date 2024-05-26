@@ -1,8 +1,8 @@
-search post 
-deboundcing for optimization
+search post - deboundcing for optimization
 infinite scrolling feature
-deployment post loading issue
-
+deployment new post update issue
+signin page bug
+fetch all post - sort by date
 
 
 

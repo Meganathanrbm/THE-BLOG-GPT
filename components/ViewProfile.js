@@ -80,7 +80,7 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
                     username: e.target.value,
                   })
                 }
-                className="border  p-2 text-2xl border-black rounded-md"
+                className="border dark:ring-white dark:border-white ring-1 dark:bg-dark-100  ring-black p-2 text-2xl border-black rounded-md"
               />
             ) : (
               userData?.username
@@ -104,12 +104,27 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
             {userPosts?.length} <span>Posts</span>
           </p>
           {isMyProfile && (
-            <button
-              onClick={() => handleEditProfile(userData?.username)}
-              className="black_btn mt-2"
-            >
-              {profileEdit.isProfileEdit ? "Save" : "Edit Profile"}
-            </button>
+            <div className="flex flex-nowrap gap-x-6">
+              {profileEdit.isProfileEdit && (
+                <button
+                  onClick={() =>
+                    setProfileEdit({
+                      ...profileEdit,
+                      isProfileEdit: false,
+                    })
+                  }
+                  className="outline_btn mt-2"
+                >
+                  Cancel
+                </button>
+              )}
+              <button
+                onClick={() => handleEditProfile(userData?.username)}
+                className="black_btn mt-2"
+              >
+                {profileEdit.isProfileEdit ? "Save" : "Edit Profile"}
+              </button>
+            </div>
           )}
         </div>
       </div>
