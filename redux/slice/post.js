@@ -9,12 +9,12 @@ const initialState = {
 export const fetchAllPosts = createAsyncThunk(
   "posts/fetchAllPosts",
   async (url) => {
-    const response = await fetch(url,{ cache: 'no-store' });
+    const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) {
       throw new Error("Failed to fetch the all posts!");
     }
     const data = await response.json();
-    console.log("All posts fetch successfully");
+    console.log("All posts fetch successfully", data);
     return data;
   }
 );

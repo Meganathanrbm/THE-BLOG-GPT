@@ -21,10 +21,11 @@ export const GET = async (req, res) => {
       .populate("creator")
       .sort({ date: -1 })
       .limit(2)
-    
+      .exec();
 
     // const response = await Post.find({}).aggregate(pipeline);
-console.log("fetched all posts")
+    console.log("fetched all posts", response);
+    // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch the Posts", { status: 500 });
