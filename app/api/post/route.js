@@ -20,7 +20,7 @@ export const GET = async (req, res) => {
     const response = await Post.find({})
       .populate("creator")
       .sort({ date: -1 })
-      .limit(3)
+      .limit(2)
     
 
     // const response = await Post.find({}).aggregate(pipeline);
