@@ -5,7 +5,26 @@ import Post from "@/db/models/post";
 export const GET = async (req, res) => {
   try {
     await connectToDB();
-    const response = await Post.find({}).populate("creator");
+    const pipeline = [
+      { $sort: { date: -1 } },
+      { $limit: 6 },
+      {
+        $lookup: {
+          from: "creators", // Name of the creator collection
+          localField: "creator", // Field in post referencing creator
+          foreignField: "_id", // Field in creator identifying document
+          as: "creator", // Name for the populated creator data
+        },
+      },
+    ];
+    const response = await Post.find({})
+      .populate("creator")
+      .sort({ date: -1 })
+      .limit(3);
+    // .sort({ date: -1 })
+    // .limit(6);
+    // const response = await Post.find({}).aggregate(pipeline);
+
     console.log("Fetch all posts successfully!");
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {

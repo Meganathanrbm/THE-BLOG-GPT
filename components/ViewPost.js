@@ -21,9 +21,12 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import Loading from "@/app/loading";
+import { useDispatch } from "react-redux";
+import { fetchAllPosts } from "@/redux/slice/post";
 
 const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
+  const dispatch = useDispatch();
   const [shareUrl, setShareUrl] = useState({
     title: "Check out this interesting post! ",
     url: null,
@@ -45,6 +48,8 @@ const ViewPost = ({ post }) => {
         method: "DELETE",
       });
       if (response.ok) {
+        // fetch the updated posts
+        dispatch(fetchAllPosts("/api/post"));
         router.push("/");
       }
     } catch (error) {

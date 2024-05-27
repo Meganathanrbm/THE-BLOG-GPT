@@ -1,18 +1,42 @@
-const { createSlice } = require("@reduxjs/toolkit");
+const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+
+const initialState = {
+  posts: null,
+  loading: false,
+  error: null,
+};
+
+export const fetchAllPosts = createAsyncThunk(
+  "posts/fetchAllPosts",
+  async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch the all posts!");
+    }
+    const data = await response.json();
+    return data;
+  }
+);
 
 const postSlice = createSlice({
-  name: "post",
-  initialState: {
-    post: null,
-  },
-  reducers: {
-    setPost: (state, action) => {
-      state.post = action.payload;
-    },
-    clearPost: (state, action) => {
-      state.post = null;
-    },
+  name: "posts",
+  initialState,
+  reducers: {}, // No reducers for direct state updates (use actions)
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllPosts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAllPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchAllPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "Failed to fetch the all posts!";
+      });
   },
 });
-export const postActions = postSlice.actions;
+export const postActions = postSlice.reducer;
 export default postSlice;

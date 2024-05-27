@@ -7,7 +7,7 @@ const { default: darkModeSlice } = require("./slice/DarkMode");
 const store = configureStore({
   reducer: {
     darkMode: darkModeSlice.reducer,
-    post: postSlice.reducer,
+    posts: postSlice.reducer,
     generatePost: generatePostSlice.reducer,
   },
 });

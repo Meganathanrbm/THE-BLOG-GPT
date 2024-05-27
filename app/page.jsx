@@ -2,6 +2,7 @@
 
 import Feed from "@/components/Feed";
 import { darkModeActions } from "@/redux/slice/DarkMode";
+import { fetchAllPosts } from "@/redux/slice/post";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -17,6 +18,9 @@ export default function Home() {
       dispatch(darkModeActions.toggleDarkMode(true));
     }
   }, []);
+  useEffect(() => {
+    dispatch(fetchAllPosts("/api/post"));
+  }, [dispatch]);
   return (
     <section className="app center bg-white dark:bg-dark-100">
       <h1 className="text-5xl sm:text-7xl primary text-center md:text-9xl mt-6 uppercase font-bold text-black dark:text-white">
