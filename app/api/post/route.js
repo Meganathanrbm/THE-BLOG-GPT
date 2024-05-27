@@ -24,7 +24,7 @@ export const GET = async (req, res) => {
     
 
     // const response = await Post.find({}).aggregate(pipeline);
-console.loga("fetched all posts")
+console.log("fetched all posts")
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch the Posts", { status: 500 });
