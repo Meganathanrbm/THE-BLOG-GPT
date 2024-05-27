@@ -25,7 +25,6 @@ export const GET = async (req, res) => {
     // .limit(6);
     // const response = await Post.find({}).aggregate(pipeline);
 
-    console.log("Fetch all posts successfully!");
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch the Posts", { status: 500 });

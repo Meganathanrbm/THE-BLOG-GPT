@@ -14,7 +14,6 @@ export const fetchAllPosts = createAsyncThunk(
       throw new Error("Failed to fetch the all posts!");
     }
     const data = await response.json();
-    console.log("All posts fetch successfully");
     return data;
   }
 );
