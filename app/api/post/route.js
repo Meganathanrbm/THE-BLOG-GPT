@@ -20,9 +20,9 @@ export const GET = async (req, res) => {
     const response = await Post.find({})
       .populate("creator")
       .sort({ date: -1 })
-      .limit(3);
-    // .sort({ date: -1 })
-    // .limit(6);
+      .limit(3)
+      .then(() => console.log("Fetch all posts successfully!"));
+
     // const response = await Post.find({}).aggregate(pipeline);
 
     return new Response(JSON.stringify(response), { status: 200 });
