@@ -21,10 +21,10 @@ export const GET = async (req, res) => {
       .populate("creator")
       .sort({ date: -1 })
       .limit(3)
-      .then(() => console.log("Fetch all posts successfully!"));
+    
 
     // const response = await Post.find({}).aggregate(pipeline);
-
+console.loga("fetched all posts")
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch the Posts", { status: 500 });
