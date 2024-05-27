@@ -9,7 +9,7 @@ const initialState = {
 export const fetchAllPosts = createAsyncThunk(
   "posts/fetchAllPosts",
   async (url) => {
-    const response = await fetch(url);
+    const response = await fetch(url,{ cache: 'no-store' });
     if (!response.ok) {
       throw new Error("Failed to fetch the all posts!");
     }
