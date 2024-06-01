@@ -14,7 +14,7 @@ const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
       <div className="image center  overflow-hidden rounded-md   shrink-0  h-[250px] lg:w-[390px] w-full sm:w-auto">
         <Link href={`/post?postId=${_id}`}>
           <Image
-            src={image ? image : ""}
+            src={image ? image : "/assets/images/laptop.jpg"}
             width={1080}
             height={520}
             alt="post-image"

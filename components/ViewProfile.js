@@ -101,7 +101,8 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
                   userData?.email.slice(userData?.email.length - 4))}
           </p>
           <p className="capitalize dark:text-white font-semibold my-2 text-2xl">
-            {userPosts?.length} <span>Posts</span>
+            {userPosts?.length || 0} <span>Posts</span>
+     
           </p>
           {isMyProfile && (
             <div className="flex flex-nowrap gap-x-6">

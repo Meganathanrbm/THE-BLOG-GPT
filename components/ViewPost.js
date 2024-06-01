@@ -139,7 +139,7 @@ const ViewPost = ({ post }) => {
           <Date date={post?.date} creator={post?.creator} />
         </div>
         {/* image */}
-        <div className="w-full center  m-auto rounded-md overflow-hidden   lg:h-[400px]  lg:max-w-[80%] h-auto">
+        <div className="w-full center  m-auto rounded-md overflow-hidden sm:w-[400px] sm:h-auto  lg:h-[400px]  lg:max-w-[80%] h-auto">
           <Image
             alt="post image"
             width={100}

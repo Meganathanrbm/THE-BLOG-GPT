@@ -5,28 +5,32 @@ import Post from "@/db/models/post";
 export const GET = async (req, res) => {
   try {
     await connectToDB();
-    const pipeline = [
-      { $sort: { date: -1 } },
-      { $limit: 6 },
-      {
-        $lookup: {
-          from: "creators", // Name of the creator collection
-          localField: "creator", // Field in post referencing creator
-          foreignField: "_id", // Field in creator identifying document
-          as: "creator", // Name for the populated creator data
-        },
-      },
-    ];
+    const skip = req.nextUrl.searchParams.get("skip");
+    if (skip == "all") {
+      const response = await Post.find({}).populate("creator");
+      return new Response(JSON.stringify(response), { status: 200 });
+    }
+
     const response = await Post.find({})
       .populate("creator")
       .sort({ date: -1 })
-      .limit(2)
+      .skip(parseInt(skip))
+      .limit(6)
       .exec();
-
-    // const response = await Post.find({}).aggregate(pipeline);
-    console.log("fetched all posts", response);
-    // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    return new Response(JSON.stringify(response), { status: 200 });
+    const postLength = await Post.find(
+      {},
+      { image: 0, content: 0, slug: 0, tag: 0, date: 0 }
+    );
+    return new Response(
+      JSON.stringify({
+        data: response,
+        page: {
+          remaining: postLength.length - skip,
+          nextPage: parseInt(skip) + 6,
+        },
+      }),
+      { status: 200 }
+    );
   } catch (error) {
     return new Response("Failed to fetch the Posts", { status: 500 });
   }

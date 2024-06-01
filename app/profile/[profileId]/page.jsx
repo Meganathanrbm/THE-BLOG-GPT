@@ -1,6 +1,7 @@
 "use client";
 
 import ViewProfile from "@/components/ViewProfile";
+import { getRequest } from "@/utils/requestHandlers";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -23,30 +24,24 @@ const Page = () => {
   }, [session]);
   useEffect(() => {
     const getData = async () => {
-      try {
-        const response = await fetch(`/api/user/${params.profileId}`);
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      getRequest(`/api/user/${params.profileId}`)
+        .then((data) => setUserData(data))
+        .catch((err) => console.log(err));
     };
     const getPost = async () => {
-      try {
-        const response = await fetch(`/api/post`);
-        const data = await response.json();
-        const filteredPost = data.filter(
-          (post) => post.creator._id === params.profileId
-        );
-        setUserPosts(filteredPost);
-       
-      } catch (error) {
-        console.log(error);
-      }
+      getRequest(`/api/post`)
+        .then((data) => {
+          const filteredPost = data.data.filter(
+            (post) => post.creator._id === params.profileId
+          );
+          setUserPosts(filteredPost);
+        })
+        .catch((err) => console.log(err));
     };
     getData();
     getPost();
   }, []);
+
   return (
     <ViewProfile
       userData={userData}

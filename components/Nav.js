@@ -64,7 +64,7 @@ const Nav = () => {
                 width={37}
                 height={37}
                 onClick={() => setToggleDropdown((prev) => !prev)}
-                src={session?.user.image}
+                src={session?.user.image  ||""}
               />
               {toggleDropdown && (
                 <div className="dropdown">

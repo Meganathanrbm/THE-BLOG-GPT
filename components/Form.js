@@ -104,6 +104,7 @@ const Form = ({ name, submitting, post, setPost, handleSubmit }) => {
                 accept="image/*"
                 id="image"
                 hidden
+          
               />
               {!imageUrl && (
                 <>
