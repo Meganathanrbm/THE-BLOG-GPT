@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/app/loading";
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import LoadingSkeleton from "./Loading";

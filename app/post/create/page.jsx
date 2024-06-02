@@ -1,6 +1,8 @@
 "use client";
 import Form from "@/components/Form";
 import { generatePostAction } from "@/redux/slice/generatePost";
+import { postActions } from "@/redux/slice/post";
+import { getRequest } from "@/utils/requestHandlers";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -48,6 +50,12 @@ const Page = () => {
       });
       if (response.ok) {
         dispatch(generatePostAction.setPost(null));
+        getRequest("/api/post?skip=0")
+          .then((data) => {
+            dispatch(postActions.addPosts(data.data));
+            router.push("/");
+          })
+          .catch((err) => console.log(err));
         router.push("/");
       }
     } catch (error) {

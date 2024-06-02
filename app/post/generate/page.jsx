@@ -1,11 +1,9 @@
 "use client";
 import LoadingSkeleton from "@/components/Loading";
-import ViewPost from "@/components/ViewPost";
 import { generatePostAction } from "@/redux/slice/generatePost";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { InfinitySpin } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 
 const Page = () => {
