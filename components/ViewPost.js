@@ -23,6 +23,7 @@ import {
 import Loading from "@/app/loading";
 import { useDispatch } from "react-redux";
 import { fetchAllPosts } from "@/redux/slice/post";
+import { getRequest } from "@/utils/requestHandlers";
 
 const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
@@ -49,8 +50,12 @@ const ViewPost = ({ post }) => {
       });
       if (response.ok) {
         // fetch the updated posts
-        dispatch(fetchAllPosts("/api/post"));
-        router.push("/");
+        getRequest("/api/post?skip=0")
+          .then((data) => {
+            dispatch(fetchAllPosts(data.data));
+            router.push("/");
+          })
+          .catch((err) => console.log(err));
       }
     } catch (error) {
       console.log(error);
