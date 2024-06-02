@@ -27,6 +27,7 @@ import { getRequest } from "@/utils/requestHandlers";
 
 const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const [shareUrl, setShareUrl] = useState({
     title: "Check out this interesting post! ",
@@ -44,6 +45,7 @@ const ViewPost = ({ post }) => {
   }, []);
 
   const deletePost = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`/api/post/${post._id}`, {
         method: "DELETE",
@@ -53,9 +55,11 @@ const ViewPost = ({ post }) => {
         getRequest("/api/post?skip=0")
           .then((data) => {
             dispatch(postActions.addPosts(data.data));
+            setLoading(false);
             router.push("/");
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log(err))
+          .finally(() => setLoading(false));
       }
     } catch (error) {
       console.log(error);
@@ -65,6 +69,7 @@ const ViewPost = ({ post }) => {
   return (
     <section className="app center pb-4 sm:pb-8  bg-white dark:bg-dark-100">
       {!post && <Loading />}
+      {loading && <Loading />}
       <div className="w-full xl:max-w-[1025px]">
         {/* tags */}
         <div className="flex justify-between  items-center">

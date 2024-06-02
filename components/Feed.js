@@ -40,17 +40,6 @@ const Feed = () => {
     }
   };
   useEffect(() => {
-    const fetchAllPosts = async () => {
-      try {
-        getRequest("/api/post?skip=all")
-          .then((data) => dispatch(postActions.addSearchCache(data)))
-          .catch((err) => console.log(err));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    !noData && fetchAllPosts();
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -63,9 +52,9 @@ const Feed = () => {
       <h2 className="sub_heading my-4 text-left">All blog posts</h2>
       <div className="flex flex-col sm:flex-row items-center justify-center flex-wrap gap-6 sm:gap-x-10 lg:gap-x-16 ">
         {displaySearchResult &&
-          searchResult.length !== 0 &&
+          searchResult?.length !== 0 &&
           searchResult?.map((post, i) => <BlogPost key={i} {...post} />)}
-        {displaySearchResult && searchResult.length === 0 && (
+        {displaySearchResult && searchResult?.length === 0 && (
           <h2 className="text-center sub_heading mt-4 w-full">
             no result found!
           </h2>

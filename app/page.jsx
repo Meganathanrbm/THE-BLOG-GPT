@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Loading from "./loading";
 import useFetch from "@/hooks/useFetch";
-
+import { getRequest } from "@/utils/requestHandlers";
 
 export default function Home() {
   const [searchInput, setSearchInput] = useState("");
@@ -34,9 +34,22 @@ export default function Home() {
     data && dispatch(postActions.addPosts(data.data));
   }, [data]);
 
+  const fetchAllPosts = async () => {
+    console.log("seach call");
+    try {
+      getRequest("/api/post?skip=all")
+        .then((data) => dispatch(postActions.addSearchCache(data)))
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //debouncing search
   useEffect(() => {
     const handleSeachPosts = () => {
+      // initial search post fetch
+
       if (searchInput.trim().length === 0) {
         return dispatch(postActions.clearSearchResult());
       }
@@ -51,8 +64,15 @@ export default function Home() {
       );
       dispatch(postActions.addSearchResult(filterPost));
     };
-  
+
     handleSeachPosts();
+
+    const searchTimer = setTimeout(() => {
+      if (!searchCache) {
+        fetchAllPosts();
+      }
+    }, 3000);
+    return () => clearTimeout(searchTimer);
   }, [searchInput]);
 
   return (
