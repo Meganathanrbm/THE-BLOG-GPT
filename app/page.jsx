@@ -32,10 +32,15 @@ export default function Home() {
   //initial post fetch
   useEffect(() => {
     data && dispatch(postActions.addPosts(data.data));
+    const searchTimer = setTimeout(() => {
+      if (data) {
+        fetchAllPosts();
+      }
+    }, 3000);
+    return () => clearTimeout(searchTimer);
   }, [data]);
 
   const fetchAllPosts = async () => {
-    console.log("seach call");
     try {
       getRequest("/api/post?skip=all")
         .then((data) => dispatch(postActions.addSearchCache(data)))
@@ -66,13 +71,6 @@ export default function Home() {
     };
 
     handleSeachPosts();
-
-    const searchTimer = setTimeout(() => {
-      if (!searchCache) {
-        fetchAllPosts();
-      }
-    }, 3000);
-    return () => clearTimeout(searchTimer);
   }, [searchInput]);
 
   return (
