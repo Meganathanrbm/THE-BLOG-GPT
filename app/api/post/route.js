@@ -11,7 +11,7 @@ export const GET = async (req, res) => {
       return new Response(JSON.stringify(response), { status: 200 });
     }
 
-    const response = await Post.find({},{image:0})
+    const response = await Post.find({})
       .populate("creator")
       .sort({ date: -1 })
       .skip(parseInt(skip))
