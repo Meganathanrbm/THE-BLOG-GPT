@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-[#E8E8EA] mt-auto dark:bg-[#141624] px-6 sm:px-16 md:px-20 lg:px-28 padding">
       <div className="flex lg:flex-row flex-col-reverse justify-between">
         <p className="text-[#667085] m-2 text-center dark:text-[#C0C5D0] font-semibold text-base">
-          © {year}. All Rights Reserved.
+          © Meganathan R  {year}. All Rights Reserved.
         </p>
 
         <ul className="flex lg:flex-row flex-col center gap-4 lg:gap-8">
