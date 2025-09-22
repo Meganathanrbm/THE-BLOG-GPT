@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import BlogPost from "./BlogPost";
@@ -40,7 +40,6 @@ const Feed = () => {
     }
   };
   useEffect(() => {
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -63,7 +62,7 @@ const Feed = () => {
           posts?.map((post, i) => <BlogPost key={i} {...post} />)}
       </div>
       <div className="w-full flex justify-center">
-        {loading && !noData && (
+        {loading && posts.length && !noData && (
           <InfinitySpin
             visible={true}
             width="200"

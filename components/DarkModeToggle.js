@@ -1,7 +1,7 @@
 "use client";
 
 import { darkModeActions } from "@/redux/slice/DarkMode";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DarkModeToggle = () => {

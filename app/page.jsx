@@ -1,7 +1,6 @@
 "use client";
 
 import Feed from "@/components/Feed";
-import { darkModeActions } from "@/redux/slice/DarkMode";
 import { postActions } from "@/redux/slice/post";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,18 +15,6 @@ export default function Home() {
 
   const searchCache = useSelector((state) => state.posts.searchCache);
   const { data, loading, error } = useFetch("/api/post?skip=0");
-
-  //for dark theme
-  useEffect(() => {
-    //check for device default theme dark or light
-    //if it is dark set theme dark
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      dispatch(darkModeActions.toggleDarkMode(true));
-    }
-  }, []);
 
   //initial post fetch
   useEffect(() => {

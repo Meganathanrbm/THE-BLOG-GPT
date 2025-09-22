@@ -6,6 +6,8 @@ export const GET = async (req, res) => {
   try {
     await connectToDB();
     const skip = req.nextUrl.searchParams.get("skip");
+    const skipNum = skip === "all" ? 0 : parseInt(skip || "0");
+
     if (skip == "all") {
       const response = await Post.find({}).populate("creator");
       return new Response(JSON.stringify(response), { status: 200 });
@@ -17,15 +19,12 @@ export const GET = async (req, res) => {
       .skip(parseInt(skip))
       .limit(6)
       .exec();
-    const postLength = await Post.find(
-      {},
-      { image: 0, content: 0, slug: 0, tag: 0, date: 0 }
-    );
+    const postLength = await Post.countDocuments();
     return new Response(
       JSON.stringify({
         data: response,
         page: {
-          remaining: postLength.length - skip,
+          remaining: postLength.length - skipNum - response.length,
           nextPage: parseInt(skip) + 6,
         },
       }),
