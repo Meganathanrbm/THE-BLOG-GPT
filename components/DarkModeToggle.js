@@ -1,7 +1,7 @@
 "use client";
 
 import { darkModeActions } from "@/redux/slice/DarkMode";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DarkModeToggle = () => {
@@ -15,7 +15,18 @@ const DarkModeToggle = () => {
     if (key === "Enter") return handleClick();
   };
 
-  useEffect(() => {
+  // Detect system theme once on mount
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      dispatch(darkModeActions.toggleDarkMode(prefersDark));
+    }
+  }, [dispatch]);
+
+  // Apply dark class to <html>
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 

@@ -3,7 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const darkModeSlice = createSlice({
   name: "darkMode",
   initialState: {
-    isDarkMode: window.matchMedia?.("(prefers-color-scheme: dark)")?.matches,
+    isDarkMode: false,
   },
   reducers: {
     toggleDarkMode: (state, actions) => {
