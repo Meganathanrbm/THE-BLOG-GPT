@@ -1,7 +1,8 @@
 "use client";
 import Form from "@/components/Form";
+import LoadingSkeleton from "@/components/Loading";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 const Page = () => {
   const [post, setPost] = useState(null);
@@ -49,13 +50,15 @@ const Page = () => {
     getPost();
   }, [searchParams]);
   return (
-    <Form
-      name="Edit"
-      post={post}
-      setPost={setPost}
-      handleSubmit={handleUpdate}
-      submitting={submitting}
-    />
+    <Suspense fallback={<LoadingSkeleton />}>
+      <Form
+        name="Edit"
+        post={post}
+        setPost={setPost}
+        handleSubmit={handleUpdate}
+        submitting={submitting}
+      />
+    </Suspense>
   );
 };
 
