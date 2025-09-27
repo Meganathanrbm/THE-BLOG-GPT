@@ -49,6 +49,7 @@
   }
 }
 
+
 /* Tailwind Styles */
 .app {
   @apply flex justify-center items-center flex-col px-6 sm:px-16 md:px-20 lg:px-28
@@ -152,4 +153,28 @@
 /* text */
 .title_heading {
   @apply sm:text-5xl text-4xl font-bold text-black dark:text-white capitalize my-4
+}
+
+
+/* Skeloten Loading */
+.skeloten_loading {
+  @apply bg-gray-200 dark:bg-gray-700 relative overflow-hidden;
+}
+
+.skeloten_loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }

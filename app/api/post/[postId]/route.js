@@ -1,5 +1,6 @@
 import { connectToDB } from "@/db/database";
 import Post from "@/db/models/post";
+import User from "@/db/models/user";
 
 // to get specific post
 

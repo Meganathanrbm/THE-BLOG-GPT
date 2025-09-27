@@ -5,9 +5,9 @@ import { postActions } from "@/redux/slice/post";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loading from "./loading";
 import useFetch from "@/hooks/useFetch";
 import { getRequest } from "@/utils/requestHandlers";
+import BlogPost_Skelotan from "@/components/BlogPost_Skelotan";
 
 export default function Home() {
   const [searchInput, setSearchInput] = useState("");
@@ -86,8 +86,7 @@ export default function Home() {
       <hr className="hr" />
       {/* background animation style */}
 
-      {loading && <Loading />}
-      <Feed />
+      <Feed postLoading={loading} />
     </section>
   );
 }

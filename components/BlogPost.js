@@ -7,7 +7,7 @@ import Date from "./Date";
 const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
   return (
     <section
-      className={`flex w-full sm:w-[390px] rounded-md max-h-max gap-2 mb-6  flex-col ${
+      className={`flex w-full sm:w-[390px] rounded-md overflow-hidden max-h-max gap-2 mb-6  flex-col ${
         !title && "animate-pulse"
       }`}
     >
@@ -18,6 +18,7 @@ const BlogPost = ({ title, _id, creator, content, tag, image, date }) => {
             width={1080}
             height={520}
             alt="post-image"
+            loading="lazy"
             className={`${
               image ? "" : "bg-gray-200 dark:bg-gray-700 "
             } rounded-md object-cover hover:scale-110 transition ease-linear    shrink-0  h-full lg:h-[220px] lg:w-[390px] w-full sm:w-auto`}

@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getRequest } from "@/utils/requestHandlers";
 import { postActions } from "@/redux/slice/post";
+import BlogPost_Skelotan from "./BlogPost_Skelotan";
 import { InfinitySpin } from "react-loader-spinner";
 
-const Feed = () => {
+const Feed = ({ postLoading }) => {
   const dispatch = useDispatch();
   // get from the redux store
   const posts = useSelector((state) => state.posts.posts);
@@ -58,6 +59,10 @@ const Feed = () => {
             no result found!
           </h2>
         )}
+        {postLoading &&
+          Array(4)
+            .fill(0)
+            .map((_, i) => <BlogPost_Skelotan key={i} />)}
         {!displaySearchResult &&
           posts?.map((post, i) => <BlogPost key={i} {...post} />)}
       </div>
