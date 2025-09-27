@@ -1,9 +1,10 @@
 "use client";
 
+import LoadingSkeleton from "@/components/Loading";
 import ViewPost from "@/components/ViewPost";
 
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -23,5 +24,9 @@ export default function Page() {
     getPost();
   }, [searchParams]);
 
-  return <ViewPost post={post} />;
+  return (
+    <Suspense fallback={<LoadingSkeleton />}>
+      <ViewPost post={post} />
+    </Suspense>
+  );
 }
