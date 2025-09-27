@@ -20,10 +20,11 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import Loading from "@/app/loading";
+
 import { useDispatch } from "react-redux";
 import { postActions } from "@/redux/slice/post";
 import { getRequest } from "@/utils/requestHandlers";
+import LoadingSkeleton from "./Loading";
 
 const ViewPost = ({ post }) => {
   const [threedotModel, setThreedotModel] = useState(false);
@@ -68,8 +69,8 @@ const ViewPost = ({ post }) => {
 
   return (
     <section className="app center pb-4 sm:pb-8  bg-white dark:bg-dark-100">
-      {!post && <Loading />}
-      {loading && <Loading />}
+      {(!post || loading) && <LoadingSkeleton />}
+
       <div className="w-full xl:max-w-[1025px]">
         {/* tags */}
         <div className="flex justify-between  items-center">

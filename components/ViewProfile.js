@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import BlogPost from "./BlogPost";
-import Loading from "@/app/loading";
+import LoadingSkeleton from "./Loading";
 
 const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
   const [profileEdit, setProfileEdit] = useState({
@@ -52,7 +52,7 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
   return (
     <section className="padding min-h-screen px-6 sm:px-16 md:px-20 lg:px-28 py-3 sm:py-4 bg-white dark:bg-dark-100">
       {/* loading */}
-      {loading && <Loading />}
+      {loading && <LoadingSkeleton />}
       {/* Title */}
       <h2 className="title_heading ">Profile</h2>
       <p className="text-lg text-slate-500 mt-0">
@@ -102,7 +102,6 @@ const ViewProfile = ({ isMyProfile, userData, userPosts }) => {
           </p>
           <p className="capitalize dark:text-white font-semibold my-2 text-2xl">
             {userPosts?.length || 0} <span>Posts</span>
-     
           </p>
           {isMyProfile && (
             <div className="flex flex-nowrap gap-x-6">
