@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import ReduxProvider from "@/providers/ReduxProvider";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
+import LoadingSkeleton from "@/components/Loading";
 
 export const metadata = {
   title: "The Blog GPT",
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <Provider>
             <Nav />
-            {children}
+            <Suspense fallback={<LoadingSkeleton />}>{children}</Suspense>
             <Footer />
           </Provider>
         </ReduxProvider>
